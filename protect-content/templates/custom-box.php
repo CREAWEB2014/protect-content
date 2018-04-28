@@ -7,7 +7,7 @@
 
     <p>
         <label for="<?= $admin->get_post_field_name('redirect_url'); ?>"><b>Redirect URL:</b></label>
-        <input style="width: 99%; margin-bottom: 5px;" name="<?= $admin->get_post_field_name('redirect_url'); ?>" id="<?= $admin->get_post_field_name('redirect_url'); ?>" class="code" value="<?= $purchase_url; ?>" type="text">
+        <input style="width: 99%; margin-bottom: 5px;" name="<?= $admin->get_post_field_name('redirect_url'); ?>" id="<?= $admin->get_post_field_name('redirect_url'); ?>" class="code" value="<?= $redirect_url; ?>" type="text">
         <span class="howto">Specify the URL where unauthorized users will be redirected when they try to access a protected content.</span>
     </p>
 
@@ -61,6 +61,7 @@ jQuery( document ).ready( function( $ ) {
                     exclude: exclude,
                     action: 'ftpc_user_search'
                 };
+
             }
         }
     });

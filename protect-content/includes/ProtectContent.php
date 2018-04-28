@@ -71,38 +71,36 @@ class FTProtectContent {
     public function init() {
 
         add_action('admin_enqueue_scripts', [$this, 'action_enqueue_scripts']);
-        add_action('template_include', [$this, 'action_template_include'], -1000);
+        add_action('template_redirect', [$this, 'action_template_redirect'], -1000);
 	}
 
-    public function action_template_include($template) {
+    public function action_template_redirect() {
 
         global $post;
 
-    	if (!is_singular() || empty($post)) {
-            return $template;
-        }
+    	if (is_singular() && !empty($post)) {
 
-        $meta = $this->get_meta($post);
+            $meta = $this->get_meta($post);
 
-        if ($meta['protect']) {
+            if ($meta['protect']) {
 
-            if (!is_user_logged_in()) {
+                if (!is_user_logged_in()) {
 
-                wp_redirect(wp_login_url(get_permalink()));
-                exit;
+                    wp_redirect(wp_login_url(get_permalink()));
+                    exit;
+
+                }
+
+                if (!in_array(get_current_user_id(), $meta['users'])) {
+
+                    wp_redirect($meta['redirect_url']);
+                    exit;
+
+                }
 
             }
 
-            if (!in_array(get_current_user_id(), $meta['users'])) {
-
-                wp_redirect($meta['redirect_url']);
-                exit;
-
-            }
-
         }
-
-        return $template;
 
     }
 
