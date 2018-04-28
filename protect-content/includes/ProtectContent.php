@@ -56,7 +56,8 @@ class FTProtectContent {
 
         $this->config = $this->getConfig();
         FTProtectContentAdmin::start($this);
-        ProtectContentCustomBox::start($this);
+        FTProtectContentCustomBox::start($this);
+        FTProtectContentAPI::start($this);
 
     }
 
@@ -269,5 +270,7 @@ class FTProtectContent {
         return $result;
 
     }
+
+
 
 }

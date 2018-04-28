@@ -1,6 +1,6 @@
 <?php
 
-class ProtectContentCustomBox {
+class FTProtectContentCustomBox {
 
     use FTPCSetup;
 
@@ -113,14 +113,16 @@ class ProtectContentCustomBox {
 
         $limit = 10;
 
-        $search = isset($_POST['search']) ? $_POST['search'] : '';
-        $page = isset($_POST['page']) ? $_POST['page'] : 1;
+        $search = isset($_GET['search']) ? '*' . $_GET['search'] . '*' : '';
+        $page = isset($_GET['page']) ? $_GET['page'] : 1;
+        $exclude = isset($_GET['exclude']) && is_array($_GET['exclude']) ? $_GET['exclude'] : [];
 
         $users = get_users([
             'number' => $limit,
             'orderby' => 'nicename',
             'paged' => $page,
             'search' => $search,
+            'exclude' => $exclude,
         ]);
 
         $result = [

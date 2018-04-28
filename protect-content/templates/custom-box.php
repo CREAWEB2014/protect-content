@@ -49,9 +49,16 @@ jQuery( document ).ready( function( $ ) {
             url: ajaxurl,
             dataType: 'json',
             data: function (params) {
+
+                var exclude = [];
+                $('#<?= $admin->get_post_field_name('users'); ?> option:selected').each(function() {
+                    exclude.push($(this).val())
+                });
+
                 return {
                     search: params.term,
                     page: params.page || 1,
+                    exclude: exclude,
                     action: 'ftpc_user_search'
                 };
             }
