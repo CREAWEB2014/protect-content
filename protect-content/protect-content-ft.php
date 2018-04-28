@@ -1,8 +1,8 @@
 <?php
 /**
 * Plugin Name:  Protect Content (FT)
-* Description:  Create, test and deploy custom shortcodes form WordPress control panel
-* Version:      20180427
+* Description:  Protect posts and pages and assign them to specific users.
+* Version:      20180428
 * Author:       Filippo Toso
 * Author URI:   https://www.filippotoso.com/
 * License:      MIT License
