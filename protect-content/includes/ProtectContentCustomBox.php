@@ -11,7 +11,7 @@ class FTProtectContentCustomBox {
      * @method init
      * @return void
      */
-    public static function init($plugin) {
+    public function init($plugin) {
         add_action('add_meta_boxes', [$this, 'action_custom_box']);
         add_action('save_post', [$this, 'action_save_postdata']);
         add_action('wp_ajax_ftpc_user_search', [$this, 'ajax_user_search']);
@@ -84,7 +84,9 @@ class FTProtectContentCustomBox {
             $this->plugin->config['meta']['box-name'],
             'Protect Content',
             [$this, 'custom_box_html'],
-            'post'
+            ['page', 'post'],
+            'normal',
+            'high'
         );
     }
 

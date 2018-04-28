@@ -15,10 +15,12 @@
         <label for="<?= $admin->get_post_field_name('users'); ?>"><b>Authorized Users:</b></label>
 
         <select style="width: 99%; margin-bottom: 5px;" name="<?= $admin->get_post_field_name('users'); ?>[]" id="<?= $admin->get_post_field_name('users'); ?>"  multiple="multiple">
-            <?php $full_users = get_users(['include' => $users]); ?>
-            <?php foreach($full_users as $user) : ?>
-                <option value="<?= $user->ID; ?>" selected="selected"><?= $user->first_name; ?> <?= $user->last_name; ?> (<?= $user->user_login; ?> / #<?= $user->ID; ?>)</option>
-            <?php endforeach; ?>
+            <?php if (!empty($users)) : ?>
+                <?php $full_users = get_users(['include' => $users]); ?>
+                <?php foreach($full_users as $user) : ?>
+                    <option value="<?= $user->ID; ?>" selected="selected"><?= $user->first_name; ?> <?= $user->last_name; ?> (<?= $user->user_login; ?> / #<?= $user->ID; ?>)</option>
+                <?php endforeach; ?>
+            <?php endif; ?>
         </select>
 
         <span class="howto">The users authorized to access this content.</span>

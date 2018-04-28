@@ -26,7 +26,7 @@ class FTProtectContentAPI {
         $api = static::instance();
 
         $post_id = is_a($post, WP_Post::class) ? $post->ID : (int) $post;
-        $user_id = is_a($user, WP_User::class) ? $user->ID : (int) $user;
+        $user_id = is_a($user, WP_User::class) ? $user->ID : (string) $user;
 
         $current = $api->plugin->get_option($post_id, 'users');
         $current = array_unique(array_merge($current, [$user_id]));
@@ -79,7 +79,7 @@ class FTProtectContentAPI {
         $current = $api->plugin->get_option($post_id, 'users');
 
         foreach ($users as $user) {
-            $current[] = is_a($user, WP_User::class) ? $user->ID : (int) $user;
+            $current[] = is_a($user, WP_User::class) ? $user->ID : (string) $user;
         }
 
         $current = array_unique($current);
@@ -109,7 +109,7 @@ class FTProtectContentAPI {
 
         $exclude = [];
         foreach ($users as $user) {
-            $exclude[] = is_a($user, WP_User::class) ? $user->ID : (int) $user;
+            $exclude[] = is_a($user, WP_User::class) ? $user->ID : (string) $user;
         }
         $current = array_unique(array_diff($current, $exclude));
 
@@ -131,7 +131,7 @@ class FTProtectContentAPI {
 
         $post_id = is_a($post, WP_Post::class) ? $post->ID : (int) $post;
 
-        $api->plugin->set_option($post_id, 'protect_content', 1);
+        $api->plugin->set_option($post_id, 'protect', 1);
 
         return true;
 
@@ -149,7 +149,7 @@ class FTProtectContentAPI {
 
         $post_id = is_a($post, WP_Post::class) ? $post->ID : (int) $post;
 
-        $api->plugin->set_option($post_id, 'protect_content', 0);
+        $api->plugin->set_option($post_id, 'protect', 0);
 
         return true;
 
@@ -175,17 +175,21 @@ class FTProtectContentAPI {
 
     /**
      * Get a post protection details
-     * @method get_protection_details
+     * @method protection_details
      * @param  [type]                 $post [description]
      * @return [type]                       [description]
      */
-    public static function get_protection_details($post) {
+    public static function protection_details($post) {
 
         $api = static::instance();
 
         $post_id = is_a($post, WP_Post::class) ? $post->ID : (int) $post;
 
-        return $api->plugin->get_meta($post_id);
+        return [
+            'protect' => $api->plugin->get_option($post_id, 'protect'),
+            'redirect_url' => $api->plugin->get_option($post_id, 'redirect_url'),
+            'users' => $api->plugin->get_option($post_id, 'users'),
+        ];
 
     }
 

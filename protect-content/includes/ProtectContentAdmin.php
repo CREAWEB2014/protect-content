@@ -20,7 +20,7 @@ class FTProtectContentAdmin {
         if (current_user_can('manage_options')) {
 
             add_action('admin_menu', function() {
-                add_management_page('Protect Content Configuration', 'Protect Content', 'manage_options', static::$page, [$this, 'admin_page']);
+                add_options_page('Protect Content Configuration', 'Protect Content', 'manage_options', static::$page, [$this, 'admin_page']);
             });
 
             add_action('admin_action_ftpc_save_options', [$this, 'action_save_options']);

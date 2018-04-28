@@ -56,5 +56,5 @@ FTProtectContentAPI::set_redirect_url($post, $redirect_url)
 
 **Get a post protection details**
 ```
-FTProtectContentAPI::get_protection_details($post)
+FTProtectContentAPI::protection_details($post)
 ```
