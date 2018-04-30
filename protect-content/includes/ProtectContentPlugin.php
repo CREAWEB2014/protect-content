@@ -1,6 +1,6 @@
 <?php
 
-class FTProtectContent {
+class FTProtectContentPlugin {
 
     // The name of the option for the plugin
     protected static $option = 'ftpc_plugin_config';
@@ -232,7 +232,7 @@ class FTProtectContent {
 
         $fields = ['protect', 'redirect_url', 'users'];
         if (in_array($name, $fields)) {
-            return update_post_meta($post_id, $meta_name, $value);
+             return update_post_meta($post_id, $meta_name, $value);
         }
 
         return FALSE;

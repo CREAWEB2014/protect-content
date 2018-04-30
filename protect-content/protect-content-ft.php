@@ -15,8 +15,8 @@ if (!defined('ABSPATH')) {
 require_once(__DIR__ . '/includes/includes.php');
 
 // Start the plugin
-FTProtectContent::start();
+FTProtectContentPlugin::start();
 
 // Register the activation / deactivation hooks
-register_activation_hook(__FILE__, [FTProtectContent::instance(), 'activate']);
-register_deactivation_hook(__FILE__, [FTProtectContent::instance(), 'deactivate']);
+register_activation_hook(__FILE__, [FTProtectContentPlugin::instance(), 'activate']);
+register_deactivation_hook(__FILE__, [FTProtectContentPlugin::instance(), 'deactivate']);

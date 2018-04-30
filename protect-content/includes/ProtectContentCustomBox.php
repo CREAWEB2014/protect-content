@@ -63,7 +63,6 @@ class FTProtectContentCustomBox {
         foreach ($fields as $field) {
 
             if ($this->has_post_value($field)) {
-
                 $value = $this->get_post_value($field);
                 $this->plugin->set_option($post_id, $field, $value);
 
